@@ -19,15 +19,8 @@ function App() {
     }
   }, [])
 
-  useEffect(() => {
-    fetch("http://localhost:13756/api").then(response=>response.json()).then(data=>{
-      setBackendData(data)
-    })
-  }, [])
-
     // token? to avoid to access the page without token
   return (
-    <>
     <div>
     <Routes>
       <Route path='/signup' element={<SignUp />} />
@@ -36,18 +29,6 @@ function App() {
       <Route path="/players/:playerId" element={<PlayerDetail />} />
     </Routes>
   </div>
-    <div>
-
-      {(typeof backendData.users === "undefined") ? (
-        <p>Loading...</p>
-      ): (
-        backendData.users.map((user, i) => (
-          <p key={i}>{user}</p>
-        ))
-      )}
-
-    </div>
-    </>
   )
 }
 
