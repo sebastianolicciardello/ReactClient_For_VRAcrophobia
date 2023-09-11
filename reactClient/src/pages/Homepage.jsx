@@ -1,7 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { Link, Navigate, useNavigate } from 'react-router-dom';
 import Header from '../components/Header';
-import { AuthContext } from '../components/AuthContext';
 import axios from 'axios';
 
 const Homepage = () => {
@@ -13,8 +12,6 @@ const Homepage = () => {
 
   // recover token from local storage
   const token = localStorage.getItem('token');
-
-  const { id } = useContext(AuthContext);
 
   if (!token) {
     return <Navigate to="/" replace />;
@@ -105,8 +102,8 @@ const Homepage = () => {
                 <td className="px-4 py-2 border">{index + 1}</td>
                 <td className="px-4 py-2 border cursor-pointer">
                   <Link
-                    to={`/players/${player.id}`}
-                    state={{ playerId: player.id }}
+                    to={`/players/${player._id}`}
+                    state={{ playerId: player._id }}
                     className="hover:underline text-blue-500"
                   >
                     {player.fullName}
