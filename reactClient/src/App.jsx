@@ -1,11 +1,15 @@
-import React, { useState, useEffect } from 'react'
+import React, { useContext } from 'react';
 import { SignUp, Login, Homepage, PlayerDetail } from './pages'  
 import { Routes, Route, Navigate } from 'react-router-dom'
+import { AuthContext } from './components/AuthContext';
 
 function App() {
 
+  const { username } = useContext(AuthContext);
+
   return (
     <div>
+      <h1>Welcome, {username}!</h1>
     <Routes>
       <Route path='/signup' element={<SignUp />} />
       <Route path='/' element={<Login />} />
