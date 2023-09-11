@@ -80,7 +80,29 @@ const PlayerDetail = () => {
   }
 
   async function deletePlayer() {
-    
+    try {
+      // Show a confirmation dialog
+      const confirmed = confirm('Are you sure you want to delete this player?');
+  
+      if (!confirmed) {
+        // Do not delete the player
+        return;
+      }
+  
+      const params = new URLSearchParams();
+      params.append('id', playerId);
+      const response = await axios.post('http://localhost:13756/deletePlayer', params.toString(), {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          'Content-Type': 'application/x-www-form-urlencoded'
+        },
+      });
+  
+      // redirect to homepage
+      navigate('/homepage');
+    } catch (error) {
+      console.error('Error deleting player:', error);
+    }
   }
 
 
