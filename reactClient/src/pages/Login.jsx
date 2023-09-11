@@ -25,7 +25,7 @@ const Login = () => {
             setIsRedirecting(true);
             redirectTimeout = setTimeout(() => {
                 navigate('/homepage');
-            }, 2000);
+            }, 1000);
         }
 
         return () => {

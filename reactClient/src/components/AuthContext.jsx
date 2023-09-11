@@ -3,7 +3,7 @@ import React, { createContext, useEffect, useState } from 'react';
 export const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
-  const [username, setUsername] = useState('');
+  const [id, setId] = useState('');
 
   useEffect(() => {
     // Get the token from local storage
@@ -23,19 +23,19 @@ export const AuthProvider = ({ children }) => {
             return response.json();
           })
           .then((data) => {
-            return data.username;
+            return data.id;
           });
       };
 
     
-    // Set the username in the state
+    // Set the id in the state
     verifyToken(token)
-      .then((username) => setUsername(username))
+      .then((id) => setId(id))
       .catch((error) => console.error(error));
   }, []);
 
   return (
-    <AuthContext.Provider value={{ username }}>
+    <AuthContext.Provider value={{ id }}>
       {children}
     </AuthContext.Provider>
   );
