@@ -43,10 +43,19 @@ const Homepage = () => {
   }
 
   function handleChange(event) {
-    setPlayer((prevPlayer) => ({
-      ...prevPlayer,
-      [event.target.name]: event.target.value
-    }));
+    const { name, value } = event.target;
+    if (name === 'fullName' && value.length > 20) {
+      // Limit the fullName to 20 characters
+      setPlayer((prevPlayer) => ({
+        ...prevPlayer,
+        [name]: value.slice(0, 20)
+      }));
+    } else {
+      setPlayer((prevPlayer) => ({
+        ...prevPlayer,
+        [name]: value
+      }));
+    }
   }
 
   async function createPlayer() {
